@@ -1,8 +1,13 @@
 import React from 'react'
-import { browserHistory } from 'react-router';
+// import { browserHistory } from 'react-router';   // method 1
 import NavLink from './NavLink'
 
 export default React.createClass({
+
+  // ask for `router` from context - method 2
+  contextTypes: {
+    router: React.PropTypes.object
+  },
 
   handleSubmit(event) {
     event.preventDefault()
@@ -10,7 +15,8 @@ export default React.createClass({
     const repo = event.target.elements[1].value
     const path = `/repos/${userName}/${repo}`
     console.log(path)
-    browserHistory.push(path);
+    // browserHistory.push(path);         // method 1
+    this.context.router.push(path);       // method 2
   },
 
   render() {
