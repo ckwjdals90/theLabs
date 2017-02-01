@@ -9,6 +9,8 @@ const ReactDOMServer = require('react-dom/server');
 
 const Component = require('./Component.jsx');
 
+app.use(express.static('public'));
+
 app.get('/', (req, res) => {
   let html = ReactDOMServer.renderToString(
     React.createElement(Component)
