@@ -4,20 +4,9 @@ require('babel-register')({
 
 const express = require('express');
 const app = express();
-const React = require('react');
-const ReactDOMServer = require('react-dom/server');
-
-const Component = require('./Component.jsx');
 
 app.use(express.static('public'));
-
-app.get('/', (req, res) => {
-  const props = { title: 'Universal React' };
-  let html = ReactDOMServer.renderToString(
-    React.createElement(Component, props)
-  );
-  res.send(html);
-});
+app.use(require('./routes/index.jsx'));
 
 const PORT = 3000;
 app.listen(PORT, () => {
