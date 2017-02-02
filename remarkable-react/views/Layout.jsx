@@ -1,14 +1,17 @@
 // the main Route component where all nested Route components will be rendering within
 const React = require('react');
 const Link = require('react-router').Link;
+const connect = require('react-redux').connect;
 
-module.exports = React.createClass({
-  displayName: 'Layout',
+// instead of directly exporting the component, assign it to a variable
+var Layout = React.createClass({
+  // displayName: 'Layout',   // the variable name is the component's default displayName, therefore this redundant property can be removed
   _handleClick: function() {
     alert();
   },
   render: function() {
-    const custom = this.props.custom
+    let custom = this.props.custom
+    console.log("CUSTOM@@@@@@@@@@@@@@@@@:", custom);
     return (
       <html>
         <head>
@@ -38,3 +41,11 @@ module.exports = React.createClass({
     );
   }
 });
+
+const wrapper = connect(
+  function(state) {
+    return { custom: state };
+  }
+);
+
+module.exports = wrapper(Layout);
