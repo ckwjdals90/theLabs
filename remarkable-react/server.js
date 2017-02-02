@@ -12,8 +12,9 @@ const Component = require('./Component.jsx');
 app.use(express.static('public'));
 
 app.get('/', (req, res) => {
+  const props = { title: 'Universal React' };
   let html = ReactDOMServer.renderToString(
-    React.createElement(Component)
+    React.createElement(Component, props)
   );
   res.send(html);
 });
