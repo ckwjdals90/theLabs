@@ -3,21 +3,16 @@ const React = require('react');
 const ReactDOMServer = require('react-dom/server');
 const ReactRouter = require('react-router');
 
-router.get('*', (req, res) => {
+router.get('*', function(req, res) {
   const props = { title: 'Universal React' };
   ReactRouter.match({
-    routes: (
-      <ReactRouter.Router history={ReactRouter.browserHistory}>
-        <ReactRouter.Route path='/' component={require('../Component')}>
-        </ReactRouter.Route>
-      </ReactRouter.Router>
-    ),
+    routes: require('./routes.jsx'),
     location: req.url
-  }, (error, redirectLocation, renderProps) => {
+  }, function(error, redirectLocation, renderProps) {
     if (renderProps) {
       let html = ReactDOMServer.renderToString(
         <ReactRouter.RouterContext {...renderProps}
-          createElement={(Component, renderPorps) => {
+          createElement={function(Component, renderProps) {
             return <Component {...renderProps} {...props} />;
           }}
         />
