@@ -9440,17 +9440,15 @@ module.exports = ReactPropTypesSecret;
 /* 80 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var _this = this;
-
 const React = __webpack_require__(52);
 
 module.exports = React.createClass({
   displayName: 'exports',
 
-  _handleClick: () => {
+  _handleClick: function () {
     alert();
   },
-  render: () => {
+  render: function () {
     return React.createElement(
       'html',
       null,
@@ -9482,7 +9480,7 @@ module.exports = React.createClass({
           ),
           React.createElement(
             'button',
-            { onClick: _this._handleClick },
+            { onClick: this._handleClick },
             'Click Me'
           )
         ),
@@ -21740,10 +21738,7 @@ const React = __webpack_require__(52);
 const ReactDOM = __webpack_require__(81);
 const Component = __webpack_require__(80);
 
-ReactDOM.render(
-  React.createElement(Component), document
-);
-
+ReactDOM.render(React.createElement(Component), document);
 
 /***/ })
 /******/ ]);

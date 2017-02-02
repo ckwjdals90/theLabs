@@ -1,10 +1,10 @@
 const React = require('react');
 
 module.exports = React.createClass({
-  _handleClick: () => {
+  _handleClick: function() {
     alert();
   },
-  render: () => {
+  render: function() {
     return (
       <html>
         <head>
