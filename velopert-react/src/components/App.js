@@ -15,9 +15,9 @@ class App extends Component {
 }
 
 App.defaultProps = {
-    headerTitle: 'Default header',
-    contentTitle: 'Default contentTitle',
-    contentBody: 'Default contentBody'
+  headerTitle: 'Default header',
+  contentTitle: 'Default contentTitle',
+  contentBody: 'Default contentBody'
 };
 
 export default App;
