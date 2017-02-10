@@ -1,24 +1,14 @@
-import React from 'react';
+import React, {Component} from 'react';
 
-class App extends React.Component {
-  sayHey() {
-    alert("Hey!");
-  }
+import Header from './Header.js'
+import Content from './Content.js'
 
+class App extends Component {
   render() {
-    let text = "Dev-Server"
-
-    let pStyle = {
-      color: 'aqua',
-      background: 'black'
-    }
-
     return (
       <div>
-        <h1>Hello React Skeleton</h1>
-        <h2>Welcome to {text}</h2>
-        <button onClick={this.sayHey}>Click Me</button>
-        <p style = {pStyle}>{1 == 1 ? 'True' : 'False'}</p>
+        <Header />
+        <Content />
       </div>
     );
   }
