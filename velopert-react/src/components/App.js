@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import Header from './Header';
 import Content from './Content';
 import RandomNumber from './RandomNumber';
+import Contacts from './Contacts'
 
 class App extends Component {
   constructor(props) {
@@ -27,6 +28,7 @@ class App extends Component {
         <Header title={this.props.headerTitle} />
         <Content title={this.props.contentTitle} body={this.props.contentBody} />
         <RandomNumber number={this.state.value} onUpdate={this.updateValue} />
+        <Contacts />
       </div>
     );
   }
