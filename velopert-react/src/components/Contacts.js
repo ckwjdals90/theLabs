@@ -1,11 +1,13 @@
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
-import ContactInfo from './ContactInfo'
+import ContactInfo from './ContactInfo';
+import ContactCreator from './ContactCreator';
 
 class Contacts extends Component {
+
   constructor(props) {
     super(props);
-    
+
     this.state = {
       contactData: [
         {name: "Abet", phone: "010-0000-0001"},
@@ -14,6 +16,17 @@ class Contacts extends Component {
         {name: "David", phone: "010-0000-0004"}
       ]
     };
+
+    this._insertContact = this._insertContact.bind(this);
+  }
+
+  _insertContact(name, phone) {
+    let newState = update(this.state, {
+      contactData: {
+        $push: [{ "name": name, "phone": phone}]
+      }
+    });
+    this.setState(newState);
   }
 
   render(){
@@ -27,9 +40,11 @@ class Contacts extends Component {
             );
           })}
         </ul>
+        <ContactCreator onInsert={this._insertContact} />
       </div>
     );
   }
+
 }
 
 export default Contacts;
