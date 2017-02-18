@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
+import update from 'react-addons-update';
 import ContactInfo from './ContactInfo';
 import ContactCreator from './ContactCreator';
 
