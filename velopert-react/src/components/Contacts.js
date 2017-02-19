@@ -15,10 +15,13 @@ class Contacts extends Component {
         {name: "Betty", phone: "010-0000-0002"},
         {name: "Charlie", phone: "010-0000-0003"},
         {name: "David", phone: "010-0000-0004"}
-      ]
+      ],
+      selectedKey: -1
     };
 
     this._insertContact = this._insertContact.bind(this);
+    this._onSelect = this._onSelect.bind(this);
+    this._isSelected = this._isSelected.bind(this);
   }
 
   _insertContact(name, phone) {
@@ -30,6 +33,29 @@ class Contacts extends Component {
     this.setState(newState);
   }
 
+  _onSelect(key) {
+    if(key == this.state.selectedKey) {
+      console.log("key select cancelled");
+      this.setState({
+        selectedKey: -1
+      });
+      return;
+    }
+
+    this.setState({
+      selectedKey: key
+    });
+    console.log(key + " is selected");
+  }
+
+  _isSelected(key) {
+    if(this.state.selectedKey == key) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   render(){
     return(
       <div>
@@ -37,7 +63,13 @@ class Contacts extends Component {
         <ul>
           {this.state.contactData.map((contact, i) => {
             return (
-              <ContactInfo name={contact.name} phone={contact.phone} key={i} />
+              <ContactInfo name={contact.name}
+                          phone={contact.phone}
+                            key={i}
+                     contactKey={i}
+                     isSelected={this._isSelected(i)}
+                       onSelect={this._onSelect}
+              />
             );
           })}
         </ul>
