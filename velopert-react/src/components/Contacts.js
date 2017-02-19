@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import update from 'react-addons-update';
 import ContactInfo from './ContactInfo';
 import ContactCreator from './ContactCreator';
+import ContactRemover from './ContactRemover';
 
 class Contacts extends Component {
 
@@ -20,6 +21,7 @@ class Contacts extends Component {
     };
 
     this._insertContact = this._insertContact.bind(this);
+    this._removeContact = this._removeContact.bind(this);
     this._onSelect = this._onSelect.bind(this);
     this._isSelected = this._isSelected.bind(this);
   }
@@ -31,6 +33,23 @@ class Contacts extends Component {
       }
     });
     this.setState(newState);
+  }
+
+  _removeContact() {
+    if(this.state.selectedKey == -1) {
+      console.log("contact not selected");
+      return;
+    }
+
+    this.setState({
+      contactData: update(
+        this.state.contactData,
+        {
+          $splice: [[this.state.selectedKey, 1]]
+        }
+      ),
+      selectedKey: -1
+    });
   }
 
   _onSelect(key) {
@@ -74,6 +93,7 @@ class Contacts extends Component {
           })}
         </ul>
         <ContactCreator onInsert={this._insertContact} />
+        <ContactRemover onRemove={this._removeContact} />
       </div>
     );
   }
