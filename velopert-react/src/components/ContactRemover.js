@@ -21,4 +21,4 @@ class ContactRemover extends Component {
 
 }
 
-export default ContactRemover
+export default ContactRemover;

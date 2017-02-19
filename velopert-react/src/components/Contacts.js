@@ -4,6 +4,7 @@ import update from 'react-addons-update';
 import ContactInfo from './ContactInfo';
 import ContactCreator from './ContactCreator';
 import ContactRemover from './ContactRemover';
+import ContactEditor from './ContactEditor';
 
 class Contacts extends Component {
 
@@ -17,11 +18,16 @@ class Contacts extends Component {
         {name: "Charlie", phone: "010-0000-0003"},
         {name: "David", phone: "010-0000-0004"}
       ],
-      selectedKey: -1
+      selectedKey: -1,
+      selected: {
+        name: "",
+        phone: ""
+      }
     };
 
     this._insertContact = this._insertContact.bind(this);
     this._removeContact = this._removeContact.bind(this);
+    this._editContact = this._editContact.bind(this);
     this._onSelect = this._onSelect.bind(this);
     this._isSelected = this._isSelected.bind(this);
   }
@@ -29,7 +35,7 @@ class Contacts extends Component {
   _insertContact(name, phone) {
     let newState = update(this.state, {
       contactData: {
-        $push: [{ "name": name, "phone": phone}]
+        $push: [{ "name": name, "phone": phone }]
       }
     });
     this.setState(newState);
@@ -52,17 +58,39 @@ class Contacts extends Component {
     });
   }
 
+  _editContact(name, phone) {
+    this.setState({
+      contactData: update(
+        this.state.contactData, {
+          [this.state.selectedKey]: {
+            name: { $set: name },
+            phone: { $set: phone }
+          }
+        }
+      ),
+      selected: {
+        name: name,
+        phone: phone
+      }
+    });
+  }
+
   _onSelect(key) {
     if(key == this.state.selectedKey) {
       console.log("key select cancelled");
       this.setState({
-        selectedKey: -1
+        selectedKey: -1,
+        selected: {
+          name: "",
+          phone: ""
+        }
       });
       return;
     }
 
     this.setState({
-      selectedKey: key
+      selectedKey: key,
+      selected: this.state.contactData[key]
     });
     console.log(key + " is selected");
   }
@@ -94,6 +122,7 @@ class Contacts extends Component {
         </ul>
         <ContactCreator onInsert={this._insertContact} />
         <ContactRemover onRemove={this._removeContact} />
+        <ContactEditor onEdit={this._editContact} isSelected={this.state.selectedKey !=-1} contact={this.state.selected} />
       </div>
     );
   }
