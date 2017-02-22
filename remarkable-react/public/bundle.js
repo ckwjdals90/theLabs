@@ -13080,12 +13080,15 @@ function warning(message) {
 /* 125 */
 /***/ (function(module, exports, __webpack_require__) {
 
-const React = __webpack_require__(5);
-const ReactRouter = __webpack_require__(117);
-const Router = ReactRouter.Router;
-const Route = ReactRouter.Route;
-const IndexRoute = ReactRouter.IndexRoute;
-const browserHistory = ReactRouter.browserHistory;
+"use strict";
+
+
+var React = __webpack_require__(5);
+var ReactRouter = __webpack_require__(117);
+var Router = ReactRouter.Router;
+var Route = ReactRouter.Route;
+var IndexRoute = ReactRouter.IndexRoute;
+var browserHistory = ReactRouter.browserHistory;
 
 // need to use Router's 'createElement' prop, which allows us to control the creation of the Router element.
 // Since this file is also used on the sever-side, we'll need to add some logic to ensure that `createElement` only works on the client-side.
@@ -13149,13 +13152,16 @@ module.exports = function(module) {
 /* 128 */
 /***/ (function(module, exports, __webpack_require__) {
 
+"use strict";
+
+
 // the Route component for About page
-const React = __webpack_require__(5);
+var React = __webpack_require__(5);
 
 module.exports = React.createClass({
   displayName: 'About',
 
-  render: function () {
+  render: function render() {
     return React.createElement(
       'p',
       null,
@@ -13173,13 +13179,16 @@ module.exports = React.createClass({
 /* 129 */
 /***/ (function(module, exports, __webpack_require__) {
 
+"use strict";
+
+
 // the Route component for Index page
-const React = __webpack_require__(5);
+var React = __webpack_require__(5);
 
 module.exports = React.createClass({
   displayName: 'Index',
 
-  render: function () {
+  render: function render() {
     return React.createElement(
       'p',
       null,
@@ -13197,21 +13206,24 @@ module.exports = React.createClass({
 /* 130 */
 /***/ (function(module, exports, __webpack_require__) {
 
+"use strict";
+
+
 // the main Route component where all nested Route components will be rendering within
-const React = __webpack_require__(5);
-const Link = __webpack_require__(117).Link;
-const connect = __webpack_require__(73).connect;
+var React = __webpack_require__(5);
+var Link = __webpack_require__(117).Link;
+var connect = __webpack_require__(73).connect;
 
 // instead of directly exporting the component, assign it to a variable
 var Layout = React.createClass({
   displayName: 'Layout',
 
   // displayName: 'Layout',   // the variable name is the component's default displayName, therefore this redundant property can be removed
-  _handleClick: function () {
+  _handleClick: function _handleClick() {
     alert();
   },
-  render: function () {
-    let custom = this.props.custom;
+  render: function render() {
+    var custom = this.props.custom;
     console.log("CUSTOM@@@@@@@@@@@@@@@@@:", custom);
     return React.createElement(
       'html',
@@ -13276,7 +13288,7 @@ var Layout = React.createClass({
   }
 });
 
-const wrapper = connect(function (state) {
+var wrapper = connect(function (state) {
   return { custom: state };
 });
 
@@ -28711,19 +28723,22 @@ function symbolObservablePonyfill(root) {
 /* 273 */
 /***/ (function(module, exports, __webpack_require__) {
 
-const React = __webpack_require__(5); // had to make `React` available again because the JSX syntex transpiles down to `React.createElement()`
-const ReactDOM = __webpack_require__(126);
+"use strict";
+
+
+var React = __webpack_require__(5); // had to make `React` available again because the JSX syntex transpiles down to `React.createElement()`
+var ReactDOM = __webpack_require__(126);
 // const Component = require('./Component.jsx');   // rather than requiring Component, require the configured routes file
-const routes = __webpack_require__(125);
+var routes = __webpack_require__(125);
 // const props = window.PROPS;   // not needed since it's no longer geing passed anywhere
-const Redux = __webpack_require__(74);
-const Provider = __webpack_require__(73).Provider;
+var Redux = __webpack_require__(74);
+var Provider = __webpack_require__(73).Provider;
 
 function reducer(state) {
   return state;
 }
 
-const store = Redux.createStore(reducer, window.PROPS);
+var store = Redux.createStore(reducer, window.PROPS);
 
 ReactDOM.render(React.createElement(
   Provider,
